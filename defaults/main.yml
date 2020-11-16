@@ -11,3 +11,4 @@ elastic_ca_pass: PleaseChangeMe
 elastic_cert_pass: PleaseChangeMeIndividually
 elasticsearch_bootstrap_pw: PleaseChangeMe
 elasticsearch_http_security: true
+elastic_initial_passwords: /usr/share/elasticsearch/initial_passwords

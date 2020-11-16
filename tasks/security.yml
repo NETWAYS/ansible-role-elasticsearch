@@ -1,4 +1,9 @@
 ---
+- name: Check if all variables we need are set
+  fail:
+    msg: "You need to set elasticsearch_ca to use this feature"
+  when: elasticsearch_ca is undefined
+
 - name: create directory for Elasticsearch CA
   file:
     path: "{{ elastic_ca_dir }}"
@@ -83,7 +88,7 @@
 
 - name: Check for passwords being set
   stat:
-    path: "/usr/share/elasticsearch/initial_passwords"
+    path: "{{ elastic_initial_passwords }}"
   delegate_to: "{{ elasticsearch_ca }}"
   register: elasticsearch_passwords_file
 
@@ -94,7 +99,7 @@
   when: elasticsearch_passwords_file.stat.exists == False
 
 - name: fetch Elastic password
-  shell: grep "PASSWORD elastic" /usr/share/elasticsearch/initial_passwords | awk {' print $4 '}
+  shell: grep "PASSWORD elastic" {{ elastic_initial_passwords }} | awk {' print $4 '}
   register: elastic_password
   changed_when: false
   delegate_to: "{{ elasticsearch_ca }}"
@@ -123,9 +128,9 @@
 # ToDo: create file in secure directory
 
 - name: Create initial passwords
-  shell: /usr/share/elasticsearch/bin/elasticsearch-setup-passwords auto -b > /usr/share/elasticsearch/initial_passwords
+  shell: /usr/share/elasticsearch/bin/elasticsearch-setup-passwords auto -b > {{ elastic_initial_passwords }}
   when: inventory_hostname == elasticsearch_ca
   args:
-    creates: /usr/share/elasticsearch/initial_passwords
+    creates: "{{ elastic_initial_passwords }}"
 
 # Maybe make sure that Elasticsearch is using the right protocol http(s) to connect, even in newly setup clusters
