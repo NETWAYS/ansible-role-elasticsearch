@@ -150,4 +150,13 @@
   args:
     creates: "{{ elastic_initial_passwords }}"
 
+# It would be better to create and set the permissions before generating the passwords. But this would
+# break the logic that relies on the file being absent when no passwords are set
+- name: Set permissions on passwords file
+  file:
+    path: "{{ elastic_initial_passwords }}"
+    owner: root
+    group: root
+    mode: 0600
+
 # Maybe make sure that Elasticsearch is using the right protocol http(s) to connect, even in newly setup clusters
