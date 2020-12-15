@@ -22,7 +22,7 @@
     creates: /etc/elasticsearch/elasticsearch.keystore
 
 - name: check for bootstrap password
-  shell: /usr/share/elasticsearch/bin/elasticsearch-keystore list
+  command: /usr/share/elasticsearch/bin/elasticsearch-keystore list
   changed_when: false
   register: es_keystore
 
@@ -150,7 +150,6 @@
   when: es_cluster_status_bootstrap.stdout is defined and es_cluster_status_bootstrap.stdout != "green"
   tags:
     - notest
-# ToDo: create file in secure directory
 
 - name: Create initial passwords
   shell: /usr/share/elasticsearch/bin/elasticsearch-setup-passwords auto -b > {{ elastic_initial_passwords }}
