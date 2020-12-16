@@ -165,5 +165,6 @@
     owner: root
     group: root
     mode: 0600
+  when: inventory_hostname == elasticsearch_ca
 
 # Maybe make sure that Elasticsearch is using the right protocol http(s) to connect, even in newly setup clusters
