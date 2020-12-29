@@ -75,7 +75,7 @@
     - certificates
 
 - name: Copy the certificate to actual node
-  copy: 
+  copy:
     src: "/tmp/{{ ansible_hostname }}.p12"
     dest: "/etc/elasticsearch/certs"
     owner: root
@@ -119,12 +119,7 @@
   shell: curl -ks https://elastic:{{ elastic_password.stdout }}@localhost:9200/_cluster/health?pretty | grep status | cut -d\" -f4
   register: es_cluster_status
   changed_when: false
-  when: elasticsearch_passwords_file.stat.exists == True
-
-#- debug:
-#    msg: "Stdout: {{ es_cluster_status.stdout }}" 
-#- debug:
-#    msg: "bootstrap stdout {{ es_cluster_status_bootstrap.stdout }}"
+  when: elasticsearch_passwords_file.stat.exists | bool
 
 - name: Check for open port 9200/tcp
   wait_for:
