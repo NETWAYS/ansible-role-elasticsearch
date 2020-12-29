@@ -74,12 +74,7 @@
         creates: "{{ elastic_ca_dir }}/{{ hostvars[item].ansible_hostname }}.p12"
 
     - name: extract CA certificate
-      command: >
-        "openssl pkcs12
-        -in {{ elastic_ca_dir }}/{{ ansible_hostname }}.p12
-        -cacerts -nokeys
-        -out {{ elastic_ca_dir }}/ca.crt
-        -password pass:"
+      command: "openssl pkcs12 -in {{ elastic_ca_dir }}/{{ ansible_hostname }}.p12 -cacerts -nokeys -out {{ elastic_ca_dir }}/ca.crt -password pass:"
       args:
         creates: "{{ elastic_ca_dir }}/ca.crt"
   when: inventory_hostname == elasticsearch_ca
