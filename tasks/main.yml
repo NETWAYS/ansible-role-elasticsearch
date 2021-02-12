@@ -50,6 +50,6 @@
 - name: Show hint about passwords
   debug:
     msg: "Remember, your temporary passwords can be found on {{ elasticsearch_ca }} in {{ elastic_initial_passwords }}"
-  when: 
+  when:
     - elasticsearch_security | bool
     - elastic_variant == "elastic"
