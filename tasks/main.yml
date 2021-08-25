@@ -46,7 +46,7 @@
     name: elasticsearch
     state: started
     enabled: yes
-    failed_when: false # DEBUG
+  failed_when: false # DEBUG
 
 - name: Collect data about failing Elasticsearch
   command: journalctl -xe -t elasticsearch
