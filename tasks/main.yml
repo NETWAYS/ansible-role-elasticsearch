@@ -14,7 +14,7 @@
 
 - name: Ensure Elasticsearch is installed
   package:
-    name: elasticsearch-7.10
+    name: elasticsearch-7.10.0-1
   when: elastic_variant == "elastic"
 
 - name: Ensure Elasticsearch OSS is installed
@@ -51,6 +51,7 @@
 - name: Collect data about failing Elasticsearch
   command: systemctl status elasticsearch
   changed_when: false
+  failed_when: false
   register: es_output
 
 - name: Show logs
