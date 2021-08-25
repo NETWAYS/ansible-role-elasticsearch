@@ -46,6 +46,16 @@
     name: elasticsearch
     state: started
     enabled: yes
+    failed_when: false # DEBUG
+
+- name: Collect data about failing Elasticsearch
+  command: journalctl -xe -t elasticsearch
+  changed_when: false
+  register: es_output
+
+- name: Show logs
+  debug:
+    var: es_output.stdout_lines
 
 - name: Show hint about passwords
   debug:
