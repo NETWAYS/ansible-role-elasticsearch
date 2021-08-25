@@ -129,7 +129,7 @@
   failed_when: false
 
 - name: Collect data about failing Elasticsearch
-  command: journalctl -xe -t elasticsearch
+  command: systemctl status elasticsearch
   changed_when: false
   register: es_output
 
