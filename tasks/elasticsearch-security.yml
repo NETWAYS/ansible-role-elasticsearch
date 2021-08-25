@@ -126,6 +126,16 @@
   service:
     name: elasticsearch
     state: started
+  failed_when: false
+
+- name: Collect data about failing Elasticsearch
+  command: journalctl -xe -t elasticsearch
+  changed_when: false
+  register: es_output
+
+- name: Show logs
+  debug:
+    var: es_output.stdout_lines
 
 - name: Wait for Elasticsearch to start
   wait_for:
