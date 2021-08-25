@@ -1,13 +1,14 @@
 ---
 - name: Prepare
   hosts: all
+  tasks:
     - name: Install Debian related packages
       apt:
         name:
           - gpg
           - procps
         update_cache: yes
-      when: ansible_os_family == "Debian" tasks:
+      when: ansible_os_family == "Debian"
     - name: Install required packages
       package:
         name:
