@@ -14,7 +14,7 @@
 
 - name: Ensure Elasticsearch is installed
   package:
-    name: elasticsearch
+    name: elasticsearch-7.10
   when: elastic_variant == "elastic"
 
 - name: Ensure Elasticsearch OSS is installed
