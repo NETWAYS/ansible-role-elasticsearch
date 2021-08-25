@@ -63,3 +63,23 @@
   when:
     - elasticsearch_security | bool
     - elastic_variant == "elastic"
+
+- name: Debug 1
+  command: grep elasticsearch /var/log/messages
+  register: messages
+  failed_when: false
+  changed_when: false
+
+- name: Debug 2
+  debug:
+    var: messages.stdout_lines
+
+- name: Debug 3
+  command: cat /var/log/elasticsearch/elasticsearch.log
+  register: es_log
+  failed_when: false
+  changed_when: false
+
+- name: Debug 4
+  debug:
+    var: es_log.stdout_lines
