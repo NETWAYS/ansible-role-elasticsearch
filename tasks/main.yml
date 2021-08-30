@@ -58,6 +58,16 @@
   debug:
     var: es_output.stdout_lines
 
+- name: Collect Elasticsearch Log
+  command: cat /var/log/elasticsearch/elasticsearch.log
+  failed_when: false
+  register: es_log
+  changed_when: false
+
+- name: Show logs
+  debug:
+    var: es_log.stdout_lines
+
 - name: Show hint about passwords
   debug:
     msg: "Remember, your temporary passwords can be found on {{ elasticsearch_ca }} in {{ elastic_initial_passwords }}"

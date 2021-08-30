@@ -138,6 +138,16 @@
   debug:
     var: es_output.stdout_lines
 
+- name: Collect Elasticsearch Log
+  command: cat /var/log/elasticsearch/elasticsearch.log
+  failed_when: false
+  register: es_log
+  changed_when: false
+
+- name: Show logs
+  debug:
+    var: es_log.stdout_lines
+
 - name: Wait for Elasticsearch to start
   wait_for:
     host: localhost
