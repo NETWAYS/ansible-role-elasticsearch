@@ -16,7 +16,8 @@ jobs:
       #max-parallel: 3
       matrix:
         distro: [centos7, debian10]
-        scenario: [default, cluster, cluster-oss]
+        scenario: [default, elastic8]
+        #scenario: [default, cluster, cluster-oss]
 
     steps:
       - name: Check out code
