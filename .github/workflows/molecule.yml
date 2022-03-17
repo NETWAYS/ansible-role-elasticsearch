@@ -18,7 +18,7 @@ jobs:
         distro: [centos7, debian10]
         #scenario: [default, cluster, cluster-oss]
         # disable checks that need ES to be started as long as it's not running
-        scenario: [default, cluster-oss]
+        scenario: [default]
 
     steps:
       - name: Check out code
