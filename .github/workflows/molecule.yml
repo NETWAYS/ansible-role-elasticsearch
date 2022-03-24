@@ -16,7 +16,7 @@ jobs:
       max-parallel: 3
       matrix:
         distro: [centos7, debian10]
-        scenario: [cluster, cluster-oss]
+        scenario: [default, cluster, cluster-oss]
 
     steps:
       - name: Check out code
@@ -32,13 +32,8 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements-test.txt
 
-      - name: Test default with molecule
-        run: |
-          molecule test -s default
-
       - name: Test with molecule
         run: |
           molecule test -s ${{ matrix.scenario }}
         env:
           MOLECULE_DISTRO: ${{ matrix.distro }}
-        needs: ["Test default with molecule"]
