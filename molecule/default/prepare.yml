@@ -6,9 +6,11 @@
       apt:
         update_cache: yes
       when: ansible_os_family == "Debian"
+
     - name: Install git
       package:
         name: git
+
     - name: Install packages for Debian
       package:
         name:
@@ -17,3 +19,9 @@
           - procps
           - curl
       when: ansible_os_family == "Debian"
+
+    - name: Enable IPv4
+      cmd: sysctl -w net.ipv6.conf.all.disable_ipv4=0
+
+    - name: Disable IPv6
+      cmd: sysctl -w net.ipv6.conf.all.disable_ipv6=1
