@@ -16,9 +16,4 @@
           - gpg-agent
           - procps
           - curl
-          - dbus
-      when: ansible_os_family == "Debian"
-    - name: Start DBus service
-      shell: /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only &
-      changed_when: false
       when: ansible_os_family == "Debian"
