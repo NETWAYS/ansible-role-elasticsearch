@@ -53,7 +53,7 @@
     name: elasticsearch
     state: started
     enabled: yes
-<<<<<<< HEAD
+  when: elasticsearch_enable | bool
   failed_when: false
 
 - name: Collect data about failing Elasticsearch
@@ -75,9 +75,6 @@
 - name: Show logs
   debug:
     var: es_log.stdout_lines
-=======
-  when: elasticsearch_enable | bool
->>>>>>> master
 
 - name: Show hint about passwords
   debug:
