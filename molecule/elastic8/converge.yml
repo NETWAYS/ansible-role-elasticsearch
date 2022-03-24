@@ -5,7 +5,6 @@
   hosts: all
   vars:
     elastic_release: 8
-    elasticsearch_enabled: false
   tasks:
     - name: "Include Elastics repos role"
       include_role:
