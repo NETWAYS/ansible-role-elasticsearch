@@ -18,3 +18,8 @@
           - curl
           - dbus
       when: ansible_os_family == "Debian"
+    - name: Start DBus service
+      service:
+        name: dbus
+        state: started
+      when: ansible_os_family == "Debian"
