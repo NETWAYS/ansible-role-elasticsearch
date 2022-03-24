@@ -19,7 +19,6 @@
           - dbus
       when: ansible_os_family == "Debian"
     - name: Start DBus service
-      service:
-        name: dbus
-        state: started
+      shell: /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only &
+      changed_when: false
       when: ansible_os_family == "Debian"
