@@ -126,6 +126,7 @@
   service:
     name: elasticsearch
     state: started
+  when: elasticsearch_enable | bool
   failed_when: false
 
 - name: Collect data about failing Elasticsearch
