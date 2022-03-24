@@ -16,4 +16,5 @@
           - gpg-agent
           - procps
           - curl
+          - dbus
       when: ansible_os_family == "Debian"
