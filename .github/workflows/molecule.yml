@@ -38,7 +38,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule[docker] docker
+        run: pip3 install ansible molecule[docker] docker yamllint ansible-lint
 
       - name: Test with molecule
         run: |
