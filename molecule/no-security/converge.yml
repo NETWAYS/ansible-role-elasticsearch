@@ -4,6 +4,8 @@
 - name: Converge
   hosts: all
   vars:
+    elasticsearch_enable: false
+    elasticsearch_security: false
   tasks:
     - name: "Include Elastics repos role"
       include_role:

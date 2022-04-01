@@ -17,7 +17,7 @@ jobs:
       matrix:
         distro: [centos7, rockylinux8, debian11]
         #scenario: [default, cluster, cluster-oss]
-        scenario: [default]
+        scenario: [default, no-security]
 
     steps:
       - name: Check out code
