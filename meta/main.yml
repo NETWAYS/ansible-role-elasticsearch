@@ -32,9 +32,6 @@ galaxy_info:
   - name: EL
     versions:
     - 7
-  - name: Debian
-    versions:
-    - 11
   #   - 25
   # - name: SomePlatform
   #   versions:
