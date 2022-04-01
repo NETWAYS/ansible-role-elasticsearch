@@ -16,7 +16,8 @@ jobs:
       #max-parallel: 3
       matrix:
         distro: [centos7]
-        scenario: [default, cluster, cluster-oss]
+        #scenario: [default, cluster, cluster-oss]
+        scenario: [default]
 
     steps:
       - name: Check out code
