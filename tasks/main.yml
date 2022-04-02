@@ -29,6 +29,18 @@
     name: elasticsearch-oss
   when: elastic_variant == "oss"
 
+- name: Workaround for ES on Docker
+  lineinfile:
+    path: /etc/elasticsearch/jvm.options
+    line: '-Xlog:disable'
+    regexp: '-Xlog:disable'
+
+- name: Workaround 2 for ES on Docker
+  lineinfile:
+    path: /etc/elasticsearch/jvm.options
+    line: '-Xlog:all=warning:stderr:uptime,level,tags'
+    regexp: '-Xlog:all=warning:stderr:uptime,level,tags'
+
 - name: Configure Elasticsearch
   template:
     src: elasticsearch.yml.j2
