@@ -29,13 +29,6 @@
     name: elasticsearch-oss
   when: elastic_variant == "oss"
 
-- name: Workaround for tests
-  lineinfile:
-    insertafter: 'ES_JAVA_OPTS=.export'
-    line: 'ES_JAVA_OPTS=$( echo $ES_JAVA_OPTS | grep -v "Duplicate cpuset")'
-    regexp: 'ES_JAVA_OPTS=$'
-    path: /usr/share/elasticsearch/bin/elasticsearch
-
 - name: Configure Elasticsearch
   template:
     src: elasticsearch.yml.j2
