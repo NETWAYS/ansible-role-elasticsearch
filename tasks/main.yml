@@ -48,6 +48,15 @@
   tags:
     - security
 
+- name: Create Elasticsearch data directory
+  file:
+    path: "{{ elasticsearch_datapath }}"
+    state: directory
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 2750
+  when: elasticsearch_create_datapath | bool
+
 - name: Start Elasticsearch
   service:
     name: elasticsearch
