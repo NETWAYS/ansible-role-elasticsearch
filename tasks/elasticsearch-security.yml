@@ -27,7 +27,7 @@
   changed_when: false
   register: es_keystore
 
-- name: Cet bootstrap password
+- name: Set bootstrap password
   shell: >
     echo "{{ elasticsearch_bootstrap_pw }}" |
     /usr/share/elasticsearch/bin/elasticsearch-keystore
