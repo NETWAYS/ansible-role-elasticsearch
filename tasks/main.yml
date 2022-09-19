@@ -12,7 +12,7 @@
   when: elasticsearch_security | bool
 
 # the following should be done by the rpm but failed with 7.4
-- name: set ulimits for Elasticsearch
+- name: Set ulimits for Elasticsearch
   pam_limits:
     limit_item: nofile
     domain: elasticsearch
