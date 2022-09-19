@@ -54,7 +54,7 @@
     state: directory
     owner: elasticsearch
     group: elasticsearch
-    mode: 2750
+    mode: "2750"
   when: elasticsearch_create_datapath | bool
 
 - name: Start Elasticsearch
