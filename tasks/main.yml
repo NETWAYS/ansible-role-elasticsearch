@@ -47,6 +47,7 @@
     - elastic_variant == "elastic"
   tags:
     - security
+    - certificates
 
 - name: Create Elasticsearch data directory
   file:
