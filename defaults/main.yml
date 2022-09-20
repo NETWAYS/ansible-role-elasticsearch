@@ -8,6 +8,8 @@ elasticsearch_monitoring_enabled: true
 elasticsearch_security: true
 elasticsearch_bootstrap_pw: PleaseChangeMe
 elasticsearch_http_security: true
+elasticsearch_datapath: /var/lib/elasticsearch
+elasticsearch_create_datapath: false
 elasticsearch_disable_systemcallfilterchecks: false
 
 # The following variables are to be used when activating security
