@@ -1,5 +1,11 @@
 ---
 
+- name: Include OS specific vars
+  include_vars: '{{ item }}'
+  with_first_found:
+    - '{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml'
+    - '{{ ansible_os_family }}.yml'
+
 - name: Set common password for common certificates
   set_fact:
     elasticsearch_tls_key_passphrase: "{{ elastic_cert_pass }}"
@@ -57,6 +63,15 @@
     group: elasticsearch
     mode: "2750"
   when: elasticsearch_create_datapath | bool
+
+- name: Activate JNA workaround (see README.md)
+  lineinfile:
+    path: "{{ elasticsearch_sysconfig_file }}"
+    regexp: 'ES_JAVA_OPTS='
+    line: 'ES_JAVA_OPTS="-Djna.tmpdir={{ elasticsearch_datapath }}/tmp"'
+  notify:
+    - Restart Elasticsearch
+  when: elasticsearch_jna_workaround | bool
 
 - name: Start Elasticsearch
   service:
