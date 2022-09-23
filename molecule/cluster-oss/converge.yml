@@ -6,6 +6,7 @@
   vars:
     elastic_variant: oss
     elasticsearch_jna_workaround: true
+    elasticsearch_disable_systemcallfilterchecks: true
   tasks:
     - name: "Include Elastics repos role"
       include_role:

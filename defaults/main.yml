@@ -10,6 +10,7 @@ elasticsearch_bootstrap_pw: PleaseChangeMe
 elasticsearch_http_security: true
 elasticsearch_datapath: /var/lib/elasticsearch
 elasticsearch_create_datapath: false
+elasticsearch_disable_systemcallfilterchecks: false
 
 elasticsearch_jna_workaround: false
 
