@@ -1,5 +1,5 @@
 node.name: "{{ ansible_hostname }}"
-path.data: /var/lib/elasticsearch
+path.data: {{ elasticsearch_datapath }}
 path.logs: /var/log/elasticsearch
 network.host: ["_local_","_site_"]
 discovery.seed_hosts: [ {% for host in groups['elasticsearch']  %}
@@ -10,6 +10,9 @@ cluster.initial_master_nodes: [ {% for host in groups['elasticsearch']  %}
 {% endfor %} ]
 {% if elastic_temperature is defined %}
 node.attr.temp: "{{ elastic_temperature }}"
+{% endif %}
+{% if elasticsearch_disable_systemcallfilterchecks | bool %}
+bootstrap.system_call_filter: false
 {% endif %}
 {% if elastic_variant == "elastic" %}
 xpack.ml.enabled: {{ elasticsearch_ml_enabled }}
@@ -31,4 +34,12 @@ xpack.security.http.ssl.truststore.path: certs/{{ ansible_hostname }}.p12
 xpack.security.http.ssl.truststore.password: {{ elasticsearch_tls_key_passphrase }}
 {% endif %}
 {% endif %}
+{% endif %}
+{% if elasticsearch_fs_repo is defined %}
+path:
+  repo:
+{% for path in elasticsearch_fs_repo %}
+    - {{ path }}
+
+{% endfor %}
 {% endif %}
