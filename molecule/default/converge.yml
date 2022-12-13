@@ -7,11 +7,6 @@
     elasticsearch_enable: false
     elasticsearch_security: false
     elasticsearch_disable_systemcallfilterchecks: true
-  pre_tasks:
-    - name: debug ip addresses
-      debug:
-        msg: "{{ hostvars[item] }}"
-      loop: "{{ groups['all'] }}"
   tasks:
     - name: "Include Elastics repos role"
       include_role:

@@ -129,26 +129,6 @@
   when: elasticsearch_enable | bool
   failed_when: false
 
-- name: Collect data about failing Elasticsearch
-  command: systemctl status elasticsearch
-  changed_when: false
-  failed_when: false
-  register: es_output
-
-- name: Show logs
-  debug:
-    var: es_output.stdout_lines
-
-- name: Collect Elasticsearch Log
-  command: cat /var/log/elasticsearch/elasticsearch.log
-  failed_when: false
-  register: es_log
-  changed_when: false
-
-- name: Show logs
-  debug:
-    var: es_log.stdout_lines
-
 - name: Wait for Elasticsearch to start
   wait_for:
     host: localhost

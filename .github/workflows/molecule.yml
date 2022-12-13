@@ -16,7 +16,6 @@ jobs:
       #max-parallel: 3
       matrix:
         distro: [ubuntu2204]
-        #distro: [centos7]
         scenario: [default, cluster, cluster-oss]
 
     steps:
