@@ -12,7 +12,7 @@
   when: elasticsearch_security | bool
 
 # the following should be done by the rpm but failed with 7.4
-- name: set ulimits for Elasticsearch
+- name: Set ulimits for Elasticsearch
   pam_limits:
     limit_item: nofile
     domain: elasticsearch
@@ -41,12 +41,23 @@
     - Restart Elasticsearch
   when: elasticsearch_manage_yaml | bool
 
-- import_tasks: elasticsearch-security.yml
+- name: Import security tasks
+  import_tasks: elasticsearch-security.yml
   when:
     - elasticsearch_security | bool
     - elastic_variant == "elastic"
   tags:
     - security
+    - certificates
+
+- name: Create Elasticsearch data directory
+  file:
+    path: "{{ elasticsearch_datapath }}"
+    state: directory
+    owner: elasticsearch
+    group: elasticsearch
+    mode: "2750"
+  when: elasticsearch_create_datapath | bool
 
 - name: Start Elasticsearch
   service:
@@ -54,6 +65,7 @@
     state: started
     enabled: yes
   when: elasticsearch_enable | bool
+  failed_when: false
 
 - name: Show hint about passwords
   debug:
