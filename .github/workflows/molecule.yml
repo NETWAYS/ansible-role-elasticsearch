@@ -15,7 +15,7 @@ jobs:
     strategy:
       #max-parallel: 3
       matrix:
-        distro: [rockylinux8]
+        distro: [rockylinux9]
         #distro: [centos7]
         scenario: [default, cluster, cluster-oss]
 
