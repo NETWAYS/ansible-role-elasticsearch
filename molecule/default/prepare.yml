@@ -15,7 +15,14 @@
       package:
         name:
           - iproute
+          - NetworkManager
       when: ansible_os_family == "RedHat"
+
+    - name: Start NetworkManager
+      service:
+        name: NetworkManager
+        state: started
+        enabled: yes
 
     - name: Install packages for Debian
       package:
