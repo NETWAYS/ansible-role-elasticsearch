@@ -13,10 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      #max-parallel: 3
+      max-parallel: 4
       matrix:
         distro: [centos7]
         scenario: [default, elastic8, cluster, cluster-oss]
+        distro: [debian11, ubuntu2204]
+        scenario: [default, cluster, cluster-oss, elastic8, cluster-8, no-security]
 
     steps:
       - name: Check out code
@@ -37,3 +39,5 @@ jobs:
           molecule test -s ${{ matrix.scenario }}
         env:
           MOLECULE_DISTRO: ${{ matrix.distro }}
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'

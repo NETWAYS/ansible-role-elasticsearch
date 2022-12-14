@@ -4,8 +4,8 @@
 - name: Converge
   hosts: all
   vars:
-    elastic_variant: oss
-    elasticsearch_disable_systemcallfilterchecks: true
+    # elasticsearch_disable_systemcallfilterchecks: true
+    elastic_release: 8
   tasks:
     - name: "Include Elastics repos role"
       include_role:
