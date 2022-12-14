@@ -15,6 +15,14 @@
       package:
         name:
           - iproute
+          - NetworkManager
+      when: ansible_os_family == "RedHat"
+
+    - name: Start NetworkManager
+      service:
+        name: NetworkManager
+        state: started
+        enabled: yes
       when: ansible_os_family == "RedHat"
 
     - name: Install packages for Debian
@@ -26,9 +34,3 @@
           - curl
           - iproute2
       when: ansible_os_family == "Debian"
-
-    - name: Enable IPv4
-      command: sysctl -w net.ipv4.conf.all.disable_ipv4=0
-
-    - name: Disable IPv6
-      command: sysctl -w net.ipv6.conf.all.disable_ipv6=1

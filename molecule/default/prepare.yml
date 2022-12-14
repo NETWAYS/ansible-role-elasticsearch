@@ -34,11 +34,3 @@
           - curl
           - iproute2
       when: ansible_os_family == "Debian"
-
-    #- name: Enable IPv4
-    #  command: sysctl -w net.ipv4.conf.all.disable_ipv4=0
-    #  when: ansible_os_family == "Debian"
-
-    #- name: Disable IPv6
-    #  command: sysctl -w net.ipv6.conf.all.disable_ipv6=1
-    #  when: ansible_os_family == "Debian"
