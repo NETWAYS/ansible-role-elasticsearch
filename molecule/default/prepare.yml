@@ -11,6 +11,12 @@
       package:
         name: git
 
+    - name: Install packages for RHEL
+      package:
+        name:
+          - iproute
+      when: ansible_os_family == "RedHat"
+
     - name: Install packages for Debian
       package:
         name:
@@ -18,6 +24,7 @@
           - gpg-agent
           - procps
           - curl
+          - iproute2
       when: ansible_os_family == "Debian"
 
     - name: Enable IPv4
