@@ -258,10 +258,6 @@
     - certificates
   ignore_errors: "{{ ansible_check_mode }}"
 
-- name: Force all notified handlers to run at this point, not waiting for normal sync points
-  ansible.builtin.meta: flush_handlers
-
-
 - name: Start Elasticsearch
   service:
     name: elasticsearch
@@ -273,6 +269,9 @@
   wait_for:
     host: localhost
     port: 9200
+
+- name: Force all notified handlers to run at this point, not waiting for normal sync points
+  ansible.builtin.meta: flush_handlers
 
 - name: Check for passwords being set
   stat:
