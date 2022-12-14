@@ -6,3 +6,10 @@
     - elastic_release >= 8
     - elastic_variant == 'elastic'
     - elasticsearch_security is not defined or not elasticsearch_security
+
+- name: Fail when trying to install OSS > 7
+  ansible.builtin.fail:
+    msg: "Elasticsearch OSS is not available with versions > 7"
+  when:
+    - elastic_release > 7
+    - elastic_variant == 'oss'
