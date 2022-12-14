@@ -63,8 +63,8 @@
     - name: Extract CA certificate
       command: >
         "openssl pkcs12 -in {{ elastic_ca_dir }}/{{ ansible_hostname }}.p12
-         -cacerts -nokeys -out {{ elastic_ca_dir }}/ca.crt
-         -password pass:{{ elasticsearch_tls_key_passphrase }}"
+        -cacerts -nokeys -out {{ elastic_ca_dir }}/ca.crt
+        -password pass:{{ elasticsearch_tls_key_passphrase }}"
       args:
         creates: "{{ elastic_ca_dir }}/ca.crt"
   when: inventory_hostname == elasticsearch_ca
