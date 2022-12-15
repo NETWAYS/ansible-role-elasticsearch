@@ -1,4 +1,6 @@
 ---
+- name: Check-set-parameters
+  ansible.builtin.include_tasks: elasticsearch-parameters.yml
 
 - name: Include OS specific vars
   include_vars: '{{ item }}'
@@ -19,7 +21,7 @@
 
 # the following should be done by the rpm but failed with 7.4
 - name: Set ulimits for Elasticsearch
-  pam_limits:
+  community.general.system.pam_limits:
     limit_item: nofile
     domain: elasticsearch
     value: 65535
@@ -47,7 +49,7 @@
     - Restart Elasticsearch
   when: elasticsearch_manage_yaml | bool
 
-- name: Import security tasks
+- name: Import Tasks elasticsearch-security.yml
   import_tasks: elasticsearch-security.yml
   when:
     - elasticsearch_security | bool
