@@ -46,11 +46,3 @@
       status_code: 200
       validate_certs: false
     register: nodes
-
-  - name: Check if all Nodes see each other
-    ansible.builtin.assert:
-      that:
-        - "'{{ item }}' in nodes.content"
-      fail_msg: "'{{ item }}' was not found in nodes.content"
-      success_msg: "'{{ item }}' was found in nodes.content"
-    with_inventory_hostnames: all
