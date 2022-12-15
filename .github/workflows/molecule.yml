@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      max-parallel: 4
+      max-parallel: 1
       matrix:
         distro: [debian11, ubuntu2204]
         scenario: [default, cluster, cluster-oss, elastic8, cluster-8, no-security]
