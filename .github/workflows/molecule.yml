@@ -15,15 +15,15 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        distro: [debian11, ubuntu2204]
+        distro: [rockylinux8, debian11, ubuntu2204]
         scenario: [default, cluster, cluster-oss, no-security]
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python 3.8
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.8
 
