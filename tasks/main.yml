@@ -104,6 +104,10 @@
   when: elasticsearch_enable | bool
   failed_when: false
 
+- name: Wait for Elasticsearch to start
+  wait_for:
+    port: 9200
+
 - name: Show hint about passwords
   debug:
     msg: "Remember, your temporary passwords can be found on {{ elasticsearch_ca }} in {{ elastic_initial_passwords }}"
