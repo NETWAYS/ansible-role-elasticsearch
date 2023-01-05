@@ -8,9 +8,12 @@ elasticsearch_monitoring_enabled: true
 elasticsearch_security: true
 elasticsearch_bootstrap_pw: PleaseChangeMe
 elasticsearch_http_security: true
+elasticsearch_http_protocol: http
 elasticsearch_datapath: /var/lib/elasticsearch
 elasticsearch_create_datapath: false
 elasticsearch_disable_systemcallfilterchecks: false
+
+elasticsearch_jna_workaround: false
 
 # The following variables are to be used when activating security
 # They follow a different naming scheme to show that they are global
