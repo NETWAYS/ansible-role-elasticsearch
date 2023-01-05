@@ -203,6 +203,16 @@
       debug: "msg={{ elastic_ca_dir }}/{{ hostvars[item].ansible_hostname }}.p12"
       loop: "{{ groups['elasticsearch'] }}"
 
+    - name: Task name
+      stat:
+        path: "/opt/es-ca/elasticsearch-cluster1.p12"
+      register: register_name
+
+    - name: Task name
+      debug:
+        msg: "File exists"
+      when: register_name.stat.exists
+
     - name: Extract CA certificate
       command: >
         "openssl pkcs12 -in {{ elastic_ca_dir }}/{{ ansible_hostname }}.p12
