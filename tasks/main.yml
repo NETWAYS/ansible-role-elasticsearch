@@ -92,6 +92,14 @@
   notify:
     - Restart Elasticsearch
 
+- name: Debug Heap
+  debug:
+    var: elasticsearch_heap
+
+- name: Debug RAM
+  debug:
+    var: ansible_memtotal_mb
+
 - name: Start Elasticsearch
   service:
     name: elasticsearch
