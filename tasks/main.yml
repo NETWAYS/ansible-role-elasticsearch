@@ -92,13 +92,9 @@
   notify:
     - Restart Elasticsearch
 
-- name: Debug Heap
+- name: Show Info about heap
   debug:
-    var: elasticsearch_heap
-
-- name: Debug RAM
-  debug:
-    var: ansible_memtotal_mb
+    msg: "Using {{ elasticsearch_heap * 1024 }} of {{ ansible_memtotal_mb }} MB as heap for Elasticsearch"
 
 - name: Start Elasticsearch
   service:
