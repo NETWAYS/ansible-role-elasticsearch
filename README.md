@@ -1,5 +1,8 @@
+This repository is deprecated! Please use our new [Ansible Collection Elastic Stack](https://github.com/NETWAYS/ansible-collection-elasticstack) instead.
+=========================================================================================================================================================
+
 ELASTICSEARCH
-=========
+
 
 This role installs Elasticsearch on your hosts. Optionally it can configure Elastics Security components, too.
 
